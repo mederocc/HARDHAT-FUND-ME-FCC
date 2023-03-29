@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+    "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.13.0",
+    "hardhat-deploy": "^0.11.25",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solhint": "^3.4.1",
+    "solidity-coverage": "^0.8.2"
+  }
+}
