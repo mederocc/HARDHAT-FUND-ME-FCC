@@ -36,7 +36,7 @@ contract FundMe {
 
     //MODIFIERS
     modifier onlyOwner() {
-        // require(msg.sender == owner);
+        // require(msg.sender == i_owner);
         if (msg.sender != i_owner) revert FundMe__NotOwner();
         _;
     }
@@ -101,5 +101,11 @@ contract FundMe {
             value: address(this).balance
         }("");
         require(callSuccess, "Call failed");
+    }
+
+    function getAddressToAmountFunded(
+        address fundingAddress
+    ) public view returns (uint256) {
+        return addressToAmountFunded[fundingAddress];
     }
 }

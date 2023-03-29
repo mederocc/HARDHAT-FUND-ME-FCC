@@ -348,8 +348,8 @@
       ]
     },
     "/Users/carlosmedero/Documents/SOLIDITY/HARDHAT-FUND-ME-FCC/contracts/FundMe.sol": {
-      "lastModificationDate": 1680051052379,
-      "contentHash": "33e4293933040af4e6854b4a04205665",
+      "lastModificationDate": 1680055629265,
+      "contentHash": "b3e18b5689b99becc29f7e38459a8928",
       "sourceName": "contracts/FundMe.sol",
       "solcConfig": {
         "version": "0.8.8",
@@ -377,7 +377,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -422,7 +422,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -466,7 +466,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -508,7 +508,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -550,7 +550,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -594,7 +594,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -639,7 +639,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },
@@ -681,7 +681,7 @@
             }
           },
           "metadata": {
-            "useLiteralContent": false
+            "useLiteralContent": true
           }
         }
       },

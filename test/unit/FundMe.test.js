@@ -39,4 +39,97 @@ describe("FundMe", async function () {
       assert.equal(funder, deployer);
     });
   });
+
+  describe("withdraw", async function () {
+    beforeEach(async function () {
+      await fundMe.fund({ value: sendValue });
+    });
+    it("Can withdraw ETH from a single founder", async function () {
+      // Arrange
+      const startingFundMeBalance = await fundMe.provider.getBalance(
+        fundMe.address
+      );
+
+      const startingDeployerBalance = await fundMe.provider.getBalance(
+        deployer
+      );
+
+      // Act
+      const transactionResponse = await fundMe.withdraw();
+      const transactionReceipt = await transactionResponse.wait(1);
+
+      const { gasUsed, effectiveGasPrice } = transactionReceipt;
+      const gasCost = gasUsed.mul(effectiveGasPrice); // they're big numbers, so we use .mul method to multiply them
+
+      const endingFundMeBalance = await fundMe.provider.getBalance(
+        fundMe.address
+      );
+      const endingDeployerBalance = await fundMe.provider.getBalance(deployer);
+
+      // Assert
+      assert.equal(endingFundMeBalance, 0);
+
+      // assert.equal(
+      //   startingDeployerBalance + startingFundMeBalance,
+      //   endingDeployerBalance
+      // );
+
+      // We'll use the big number add method instead of the above code
+      assert.equal(
+        startingDeployerBalance.add(startingFundMeBalance).toString(),
+        endingDeployerBalance.add(gasCost).toString()
+      );
+    });
+
+    // this test is overloaded. Ideally we'd split it into multiple tests
+    // but for simplicity we left it as one
+    it("it allows us to withdraw with multiple funders", async () => {
+      // Arrange
+      const accounts = await ethers.getSigners();
+      // start at 1 since 0 would be the owner
+      for (i = 1; i < 6; i++) {
+        const fundMeConnectedContract = await fundMe.connect(accounts[i]);
+        await fundMeConnectedContract.fund({ value: sendValue });
+      }
+      const startingFundMeBalance = await fundMe.provider.getBalance(
+        fundMe.address
+      );
+      const startingDeployerBalance = await fundMe.provider.getBalance(
+        deployer
+      );
+
+      // Act
+      const transactionResponse = await fundMe.withdraw();
+
+      const transactionReceipt = await transactionResponse.wait();
+      const { gasUsed, effectiveGasPrice } = transactionReceipt;
+      const gasCost = gasUsed.mul(effectiveGasPrice);
+      const endingFundMeBalance = await fundMe.provider.getBalance(
+        fundMe.address
+      );
+      const endingDeployerBalance = await fundMe.provider.getBalance(deployer);
+
+      // Assert
+      assert.equal(endingFundMeBalance, 0);
+      assert.equal(
+        startingDeployerBalance.add(startingFundMeBalance).toString(),
+        endingDeployerBalance.add(gasCost).toString()
+      );
+      // Make sure the funders are reset properly
+      await expect(fundMe.funders(0)).to.be.reverted;
+
+      for (i = 1; i < 6; i++) {
+        assert.equal(
+          await fundMe.getAddressToAmountFunded(accounts[i].address),
+          0
+        );
+      }
+    });
+
+    it("Only allows the owner to withdraw", async function () {
+      const accounts = await ethers.getSigners();
+      const fundMeConnectedContract = await fundMe.connect(accounts[1]);
+      await expect(fundMeConnectedContract.withdraw()).to.be.reverted;
+    });
+  });
 });
