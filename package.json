@@ -1,4 +1,7 @@
 {
+  "name": "hardhat-fund-me",
+  "author": "carlos medero",
+  "version": "1.0.0",
   "devDependencies": {
     "@chainlink/contracts": "^0.6.1",
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
@@ -10,5 +13,13 @@
     "hardhat-gas-reporter": "^1.0.9",
     "solhint": "^3.4.1",
     "solidity-coverage": "^0.8.2"
+  },
+  "scripts": {
+    "test": "npx hardhat test",
+    "test:staging": "npx hardhat test --network sepolia",
+    "lint": "npx solhint 'contratcs/*.sol'",
+    "lint:fix": "npm solhint 'contratcs/*.sol' --fix",
+    "format": "npm prettier --write .",
+    "coverage": "npx hardhat coverage"
   }
 }
