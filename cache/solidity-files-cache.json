@@ -348,8 +348,8 @@
       ]
     },
     "/Users/carlosmedero/Documents/SOLIDITY/HARDHAT-FUND-ME-FCC/contracts/FundMe.sol": {
-      "lastModificationDate": 1680055629265,
-      "contentHash": "b3e18b5689b99becc29f7e38459a8928",
+      "lastModificationDate": 1680470051679,
+      "contentHash": "1bf6dec05cb669a37bce13faf0162b3d",
       "sourceName": "contracts/FundMe.sol",
       "solcConfig": {
         "version": "0.8.8",
@@ -386,7 +386,7 @@
         "./PriceConverter.sol"
       ],
       "versionPragmas": [
-        "^0.8.8"
+        "^0.8.7"
       ],
       "artifacts": [
         "FundMe"
